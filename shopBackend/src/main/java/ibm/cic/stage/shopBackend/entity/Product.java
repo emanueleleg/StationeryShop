@@ -1,5 +1,8 @@
 package ibm.cic.stage.shopBackend.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "product")
@@ -32,14 +38,20 @@ public class Product {
 	@JoinColumn(name = "category_id")
 	private Category category;
 	
+	@JsonManagedReference
+	@OneToMany(mappedBy="product", cascade = CascadeType.ALL)
+	private List<ProductPreview> productPreviewList;
+
+
 	public Product() {}
 	
-	public Product(int productId, String productName, double price, Brand brand, Category category) {
+	public Product(int productId, String productName, double price, Brand brand, Category category, List<ProductPreview> productPreviewList) {
 		this.productId = productId;
 		this.productName = productName;
 		this.price = price;
 		this.brand = brand;
-		this.category = category;
+		this.category = category; 
+		this.productPreviewList = productPreviewList;
 	}
 
 	public int getProductId() {
@@ -81,12 +93,28 @@ public class Product {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+	
+	
+
+	public List<ProductPreview> getProductPreviewList() {
+		return productPreviewList;
+	}
+
+	public void setProductPreviewList(List<ProductPreview> productPreviewList) {
+		this.productPreviewList = productPreviewList;
+	}
 
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productName=" + productName + ", price=" + price + ", brand="
-				+ brand + ", category=" + category + "]";
+				+ brand + ", category=" + category + ", productPreviewList=" + productPreviewList.toString() + "]";
 	}
+	
+	
+
+
+
+
 
 
 

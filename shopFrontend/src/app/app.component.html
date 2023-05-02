@@ -2,15 +2,18 @@
 
 
 
-<div class="flex-container">
+<div>
   <header>
     <app-navbar></app-navbar>
   </header>
-  <section class="d-flex justify-content-center align-items-center mt-3">
-    <app-dashboard></app-dashboard>
+
+  <section>
+    <app-breadcrumb></app-breadcrumb>
+    <router-outlet></router-outlet>
   </section>
+
   <footer>
-    <app-footer></app-footer>
+
   </footer>
 
 

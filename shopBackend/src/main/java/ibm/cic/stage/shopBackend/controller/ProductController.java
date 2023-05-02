@@ -21,9 +21,16 @@ public class ProductController {
 		return productService.getProducts();
 	}
 	
-	@GetMapping(value = "/prova")
-	public String getTest() {
-		return "prova";
+	@CrossOrigin
+	@GetMapping(value = "/categories", produces="application/json")
+	public String getCategories() {
+		return productService.getCategories();
+	}
+	
+	@CrossOrigin
+	@GetMapping(value = "/brands", produces="application/json")
+	public String getBrands() {
+		return productService.getBrands();
 	}
 	
 }

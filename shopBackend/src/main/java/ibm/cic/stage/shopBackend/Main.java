@@ -16,12 +16,9 @@ public class Main {
 		
 		List<Product> res = dao.getProducts();
 		
-		for(Product i: res) {
-			System.out.println(i.getProductName());
-		}
 		
 	    ObjectMapper mapper = new ObjectMapper(); 
-	    String simpleJSON = mapper.writeValueAsString(res); 
+	    String simpleJSON = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(res); 
 	    
 	    System.out.println(simpleJSON);
 	}
