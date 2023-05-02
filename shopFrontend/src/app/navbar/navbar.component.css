@@ -1,7 +1,50 @@
 nav{
   background-color: rgb(45, 45, 45);
+  height: 10vh;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
 }
 
-a {
+.navbar-brand, .nav-item, .nav-link {
   color: white;
+}
+
+.navbar-brand {
+  margin-left: 3vh;
+  font-weight: bold;
+}
+
+img{
+  margin-left: 20px;
+}
+
+.section {
+  height: 5vh;
+  background-color: rgb(15, 15, 15);
+  text-align: center;
+}
+
+h1{
+  color: white;
+  margin-top: 0.5vh;
+  font-size: 1.8vh;
+}
+
+.carousel-item {
+  height: inherit;
+  overflow: hidden !important;
+  }
+
+li {
+  cursor: pointer;
+}
+
+.row{
+  width: 100vh;
+  border: solid 1px orange;
+}
+
+.container{
+  width: 100vh;
+  margin-left: 1vh;
+  margin-right: 1vh;
 }

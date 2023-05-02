@@ -4,3 +4,88 @@
   margin: 0;
   background-color: aqua;
 }
+
+.card{
+  box-shadow: none;
+  border-radius: 0;
+  border: solid white;
+  transition: 0.3s;
+  text-align: center;
+  cursor: pointer;
+}
+
+.card:hover{
+  box-shadow: 2px 2px 8px rgba(1,1,1,0.4);
+}
+
+.card-subtitle {
+  color: rgb(87, 87, 87);
+}
+
+.price {
+  font-weight: bold;
+  font-size: large;
+}
+
+.sorting {
+  float: left;
+  margin-top: 5vh;
+  width: 20%;
+}
+
+.right {
+  width: 80%;
+}
+
+.accordion {
+  margin-left: 5vh;
+  --bs-accordion-active-bg: rgba(49, 49, 49, 0.9);
+  --bs-accordion-active-color: white;
+  --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: rgba(0,0,0,.125);
+}
+
+.list-group-item{
+  border-color: white;
+
+}
+
+.form-check-input[type='checkbox']:checked {
+  background-color: rgba(49, 49, 49, 0.9);
+  border-color: rgba(49, 49, 49, 0.9);
+}
+
+.form-check-input[type='checkbox']:focus {
+  border-color: rgba(49, 49, 49, 0.9);
+  box-shadow: none;
+}
+
+.form-range::-webkit-slider-thumb {
+  background: rgba(49, 49, 49, 0.9);
+}
+
+.form-range::-moz-range-thumb {
+  background: rgba(49, 49, 49, 0.9);
+}
+
+.form-range::-ms-thumb {
+  background: rgba(49, 49, 49, 0.9);
+}
+
+.form-range:focus::-webkit-slider-thumb,
+.form-range:focus::-moz-range-thumb,
+.form-range::-moz-focus-outer,
+.form-range:focus::-ms-thumb {
+  border-color: rgba(49, 49, 49, 0.9);
+  box-shadow: none;
+}
+
+.card-img-top{
+  width: 100%;
+  height: 15vw;
+  object-fit: contain;
+}

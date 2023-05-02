@@ -1,7 +1,68 @@
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+<div class="container-fluid sorting">
+  <div class="accordion accordion-flush" id="accordionPanelsStayOpenExample">
+    <div class="accordion-item ">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+          Category
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+        <div class="accordion-body">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let cat of categories">
+              <input class="form-check-input me-1" name="{{ cat.categoryName }} category" (change)="onChange($event, 'category')" (input)="onCheckInput(1, cat.categoryName, $event)" type="checkbox" value="" aria-label="...">
+              {{ cat.categoryName }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+          Brand
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let b of brands">
+              <input class="form-check-input me-1" name="{{ b.brandName }} brand" (change)="onChange($event,'brand')" (input)="onCheckInput(2, b.brandName, $event)" type="checkbox" value="" aria-label="...">
+              {{ b.brandName }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+          Price
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <label for="customRange1" class="form-label">Price ≤ {{ priceSelected }}€</label>
+          <input type="range" class="form-range" (input)="onPriceChange($event)" id="customRange1" min="0" max="50">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container right">
+  <div class="row m-2">
+    <div class="col-lg-3 d-flex justify-content-center align-items-center"   *ngFor="let prod of products">
+      <div class="card m-2" style="width: 18rem;" routerLink="/product-details" routerLinkActive="active" ariaCurrentWhenActive="page">
+        <img src="{{ prod.productPreviewList[0].src }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"> {{ prod.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">{{ prod.brand }}</h6>
+          <p class="price">
+            {{ prod.price }}€
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
