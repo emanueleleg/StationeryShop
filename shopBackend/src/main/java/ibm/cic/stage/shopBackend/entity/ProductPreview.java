@@ -25,8 +25,8 @@ public class ProductPreview {
 	@Column(name = "src")
 	private String src;
 	
-	@Column(name = "isCover")
-	private int isCover;
+	@Column(name = "img_index")
+	private int imgIndex;
 	
 	@JsonBackReference
 	@ManyToOne
@@ -35,10 +35,10 @@ public class ProductPreview {
 	
 	public ProductPreview() {}
 
-	public ProductPreview(int productPreviewId, String src, int isCover, Product product) {
+	public ProductPreview(int productPreviewId, String src, int imgIndex, Product product) {
 		this.productPreviewId = productPreviewId;
 		this.src = src;
-		this.isCover = isCover;
+		this.imgIndex = imgIndex;
 		this.product = product;
 	}
 
@@ -58,12 +58,12 @@ public class ProductPreview {
 		this.src = src;
 	}
 
-	public int getIsCover() {
-		return isCover;
+	public int getImgIndex() {
+		return imgIndex;
 	}
 
-	public void setIsCover(int isCover) {
-		this.isCover = isCover;
+	public void setImgIndex(int isCover) {
+		this.imgIndex = isCover;
 	}
 
 	public Product getProduct() {
@@ -76,7 +76,7 @@ public class ProductPreview {
 
 	@Override
 	public String toString() {
-		return "ProductPreview [productPreviewId=" + productPreviewId + ", src=" + src + ", isCover=" + isCover
+		return "ProductPreview [productPreviewId=" + productPreviewId + ", src=" + src + ", imgIndex=" + imgIndex
 				+ ", productId=" + product.getProductId() + "]";
 	}
 	

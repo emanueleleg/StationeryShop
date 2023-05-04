@@ -12,8 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Entity
 @Table(name = "product")
@@ -24,6 +27,11 @@ public class Product {
 	@Column(name = "product_id")
 	private int productId;
 	
+    @Schema(
+            description = "User First Name"
+    )
+    // User first name should not be null or empty
+    @NotEmpty(message = "User first name should not be null or empty")
 	@Column(name = "product_name")
 	private String productName;
 
