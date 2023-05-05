@@ -18,6 +18,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+
+@Schema(
+        description = "Product"
+)
 @Entity
 @Table(name = "product")
 public class Product {
@@ -28,24 +32,38 @@ public class Product {
 	private int productId;
 	
     @Schema(
-            description = "User First Name"
+            description = "Nome del prodotto"
     )
-    // User first name should not be null or empty
-    @NotEmpty(message = "User first name should not be null or empty")
+    @NotEmpty(message = "Il nome del prodotto non dovrebbe essere nullo o un campo vuoto")
 	@Column(name = "product_name")
 	private String productName;
 
+    @Schema(
+            description = "Prezzo del prodotto"
+    )
+    @NotEmpty(message = "Il prezzo del prodotto non dovrebbe essere nullo o un campo vuoto")
 	@Column(name = "price")
 	private double price;
 	
+    @Schema(
+            description = "Brand del prodotto"
+    )
+    @NotEmpty(message = "Il brand del prodotto non dovrebbe essere nullo o un campo vuoto")
 	@ManyToOne
 	@JoinColumn(name = "brand_id")
 	private Brand brand;
 	
+    @Schema(
+            description = "Categoria del prodotto"
+    )
+    @NotEmpty(message = "Il brand del prodotto non dovrebbe essere nullo o un campo vuoto")
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
 	
+    @Schema(
+            description = "Immagini del prodotto"
+    )
 	@JsonManagedReference
 	@OneToMany(mappedBy="product", cascade = CascadeType.ALL)
 	private List<ProductPreview> productPreviewList;
