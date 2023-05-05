@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import ibm.cic.stage.shopBackend.entity.Brand;
 import ibm.cic.stage.shopBackend.entity.Category;
 import ibm.cic.stage.shopBackend.entity.Product;
+import ibm.cic.stage.shopBackend.entity.ProductPreview;
 import ibm.cic.stage.shopBackend.utils.JPAUtils;
 
 @Repository
@@ -77,6 +78,27 @@ public class Dao {
 		
 		
 		return result;		
+	}
+	
+	
+	public List<ProductPreview> getOrderedImagesByProd(){
+		
+		EntityManager entityManager = JPAUtils.getEntityManagerFactory().createEntityManager();
+		List<ProductPreview> result = null;
+		
+		try {
+			TypedQuery<ProductPreview> q = entityManager.createQuery("SELECT pp FROM ProductPreview pp ORDER BY pp.imgIndex DESC ", ProductPreview.class);
+			result =  q.getResultList();
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			entityManager.close();
+		}
+		
+		
+		return result;
+		
 	}
 
 

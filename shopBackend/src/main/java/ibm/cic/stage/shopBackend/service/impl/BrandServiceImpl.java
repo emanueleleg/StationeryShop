@@ -9,31 +9,29 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ibm.cic.stage.shopBackend.Dao;
-import ibm.cic.stage.shopBackend.entity.Product;
-import ibm.cic.stage.shopBackend.service.ProductService;
+import ibm.cic.stage.shopBackend.entity.Brand;
+import ibm.cic.stage.shopBackend.service.BrandService;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class BrandServiceImpl implements BrandService {
 	
 	@Autowired
 	private Dao dao;
 
 	@Override
-	public String getProducts() {
+	public String getBrands() {
 		ObjectMapper mapper = new ObjectMapper(); 
-		List<Product> products = dao.getProducts();
+		List<Brand> brands = dao.getBrands();
 		String result = "";
 		
 		try {
-			result = mapper.writeValueAsString(products);
+			result = mapper.writeValueAsString(brands);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
 		
 		return result;
 	}
-	
 
-	
 
 }
