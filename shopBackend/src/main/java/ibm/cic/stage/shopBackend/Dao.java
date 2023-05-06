@@ -29,6 +29,8 @@ public class Dao {
 			result =  q.getResultList();
 			for(Product i: result) {
 				Hibernate.initialize(i.getProductPreviewList());
+				Hibernate.initialize(i.getCategories());
+				Hibernate.initialize(i.getBrands());
 
 			}
 		} catch(Exception e) {
