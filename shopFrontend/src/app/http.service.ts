@@ -18,7 +18,7 @@ export class HTTPService {
     .pipe(map((response: any) => {
       const data = response;
       const products = data.map((prods) =>{
-        return {name: prods.productName, price: prods.price, brand: prods.brand.brandName, category: prods.category.categoryName, productPreviewList: prods.productPreviewList}
+        return {name: prods.productName, price: prods.price, brands: prods.brands, categories: prods.categories, productPreviewList: prods.productPreviewList}
       })
       console.log(products);
       return products;

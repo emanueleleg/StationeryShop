@@ -57,7 +57,7 @@
         <img src="{{ prod.productPreviewList[0].src }}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title"> {{ prod.name }}</h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary">{{ prod.brand }}</h6>
+          <h6 class="card-subtitle mb-2 text-body-secondary" *ngFor="let brand of prod.brands">{{ brand.brandName }} </h6>
           <p class="price">
             {{ prod.price }}€
           </p>

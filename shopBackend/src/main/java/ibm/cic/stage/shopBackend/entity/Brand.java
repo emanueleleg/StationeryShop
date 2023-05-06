@@ -2,14 +2,15 @@ package ibm.cic.stage.shopBackend.entity;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "brand")
@@ -23,7 +24,8 @@ public class Brand {
 	@Column(name = "brand_name")
 	private String brandName;
 
-	@OneToMany(mappedBy="brand", cascade=CascadeType.ALL)
+	@JsonBackReference
+	@ManyToMany(mappedBy = "brands")
 	private List<Product> productsList;
 	
 	

@@ -9,7 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -26,10 +27,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Table(name = "product")
 public class Product {
 	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "product_id")
 	private int productId;
+	
 	
     @Schema(
             description = "Nome del prodotto"
@@ -38,6 +41,7 @@ public class Product {
 	@Column(name = "product_name")
 	private String productName;
 
+    
     @Schema(
             description = "Prezzo del prodotto"
     )
@@ -45,22 +49,33 @@ public class Product {
 	@Column(name = "price")
 	private double price;
 	
+    
     @Schema(
-            description = "Brand del prodotto"
+            description = "Brand a cui appartiene il prodotto"
     )
-    @NotEmpty(message = "Il brand del prodotto non dovrebbe essere nullo o un campo vuoto")
-	@ManyToOne
-	@JoinColumn(name = "brand_id")
-	private Brand brand;
+    @JsonManagedReference
+    @ManyToMany
+    @JoinTable(
+    		name = "product_brand_category",
+    		joinColumns = @JoinColumn(name = "product_id"),
+    		inverseJoinColumns = @JoinColumn(name = "brand_id")
+    		)   
+	private List<Brand> brands;
 	
+    
     @Schema(
-            description = "Categoria del prodotto"
+            description = "Categorie a cui appartiene il prodotto"
     )
-    @NotEmpty(message = "Il brand del prodotto non dovrebbe essere nullo o un campo vuoto")
-	@ManyToOne
-	@JoinColumn(name = "category_id")
-	private Category category;
-	
+    @JsonManagedReference
+    @ManyToMany
+    @JoinTable(
+    		name = "product_brand_category",
+    		joinColumns = @JoinColumn(name = "product_id"),
+    		inverseJoinColumns = @JoinColumn(name = "category_id")
+    		)  
+	private List<Category> categories;
+	 
+    
     @Schema(
             description = "Immagini del prodotto"
     )
@@ -69,16 +84,23 @@ public class Product {
 	private List<ProductPreview> productPreviewList;
 
 
+    
+    
 	public Product() {}
 	
-	public Product(int productId, String productName, double price, Brand brand, Category category, List<ProductPreview> productPreviewList) {
+	public Product(int productId, String productName, double price, List<Brand> brands, List<Category> categories, List<ProductPreview> productPreviewList) {
+
 		this.productId = productId;
 		this.productName = productName;
 		this.price = price;
-		this.brand = brand;
-		this.category = category; 
+		this.brands = brands;
+		this.categories = categories;
 		this.productPreviewList = productPreviewList;
 	}
+
+
+
+
 
 	public int getProductId() {
 		return productId;
@@ -104,22 +126,6 @@ public class Product {
 		this.price = price;
 	}
 
-	public Brand getBrand() {
-		return brand;
-	}
-
-	public void setBrand(Brand brand) {
-		this.brand = brand;
-	}
-
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-	
 	
 
 	public List<ProductPreview> getProductPreviewList() {
@@ -130,11 +136,33 @@ public class Product {
 		this.productPreviewList = productPreviewList;
 	}
 
+
+	public List<Brand> getBrands() {
+		return brands;
+	}
+
+	public void setBrands(List<Brand> brands) {
+		this.brands = brands;
+	}
+
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "Product [productId=" + productId + ", productName=" + productName + ", price=" + price + ", brand="
-				+ brand + ", category=" + category + ", productPreviewList=" + productPreviewList.toString() + "]";
+		return "Product [productId=" + productId + ", productName=" + productName + ", price=" + price + ", brands="
+				+ brands + ", categories=" + categories + ", productPreviewList=" + productPreviewList + "]";
 	}
+
+ 
 	
 	
 
